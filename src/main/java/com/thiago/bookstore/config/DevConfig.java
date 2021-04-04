@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import com.thiago.bookstore.DBService;
+import com.thiago.bookstore.services.DBService;
 
 @Configuration
 @Profile("dev")

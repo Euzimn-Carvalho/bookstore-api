@@ -1,4 +1,4 @@
-package com.thiago.bookstore;
+package com.thiago.bookstore.services;
 
 import java.util.Arrays;
 

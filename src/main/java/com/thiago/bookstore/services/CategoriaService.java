@@ -26,4 +26,9 @@ public class CategoriaService {
 	public List<Categoria> findAll(){
 		return categoriaRepository.findAll();
 	}
+	public Categoria deleteCategoria(Integer id){
+		Optional<Categoria> categoria = categoriaRepository.findById(id);
+		return categoria.orElseThrow( () -> new ObjectNotFoundException(
+				"Objeto não encontrado id: " + id + ", tipo: " + Categoria.class.getName()));
+	}
 }

@@ -36,4 +36,12 @@ public class CategoriaService {
 		categoria.setId(null);
 		return categoriaRepository.save(categoria);
 	}
+	
+	public Categoria update(Integer id, CategoriaDTO categoriaDTO) {
+		Categoria categoria = this.findOneCategoria(id);
+		categoria.setNome(categoriaDTO.getNome());
+		categoria.setDescricao(categoriaDTO.getDescricao());
+		
+		return categoriaRepository.save(categoria);
+	}
 }

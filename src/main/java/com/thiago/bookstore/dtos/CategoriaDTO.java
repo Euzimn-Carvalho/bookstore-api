@@ -1,9 +1,12 @@
 package com.thiago.bookstore.dtos;
 
+import java.io.Serializable;
+
 import com.thiago.bookstore.domain.Categoria;
 
-public class CategoriaDTO {
+public class CategoriaDTO implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String nome;
 	private String descricao;

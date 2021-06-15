@@ -26,11 +26,6 @@ public class CategoriaService {
 	public List<Categoria> findAll(){
 		return categoriaRepository.findAll();
 	}
-	public Categoria deleteCategoria(Integer id){
-		Optional<Categoria> categoria = categoriaRepository.findById(id);
-		return categoria.orElseThrow( () -> new ObjectNotFoundException(
-				"Objeto não encontrado id: " + id + ", tipo: " + Categoria.class.getName()));
-	}
 	
 	public Categoria create(Categoria categoria) {
 		categoria.setId(null);
@@ -43,5 +38,10 @@ public class CategoriaService {
 		categoria.setDescricao(categoriaDTO.getDescricao());
 		
 		return categoriaRepository.save(categoria);
+	}
+	
+	public void delete(Integer id) {
+		findOneCategoria(id);
+		categoriaRepository.deleteById(id);
 	}
 }

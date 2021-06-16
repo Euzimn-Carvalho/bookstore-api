@@ -28,4 +28,17 @@ public class LivroServices {
 		categoriaService.findOneCategoria(categoria_id);
 		return repository.findLivrosByCategoria(categoria_id);
 	}
+	
+	public Livro update(Integer id, Livro updateLivro) {
+		Livro livro = this.getById(id);
+		updateLivro(livro, updateLivro);
+		return repository.save(livro);
+	}
+	
+	private void updateLivro(Livro livro, Livro updateLivro) {
+		livro.setTitulo(updateLivro.getTitulo());
+		livro.setNome_autor(updateLivro.getNome_autor());
+		livro.setTexto(updateLivro.getTexto());
+	}
+	
 }

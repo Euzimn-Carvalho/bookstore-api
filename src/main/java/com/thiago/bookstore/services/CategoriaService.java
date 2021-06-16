@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.thiago.bookstore.domain.Categoria;
 import com.thiago.bookstore.dtos.CategoriaDTO;
-import com.thiago.bookstore.exceptions.ObjectNotFoundException;
 import com.thiago.bookstore.repositories.CategoriaRepository;
+import com.thiago.bookstore.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -42,6 +43,11 @@ public class CategoriaService {
 	
 	public void delete(Integer id) {
 		findOneCategoria(id);
-		categoriaRepository.deleteById(id);
+		try {
+			categoriaRepository.deleteById(id);
+		}catch (DataIntegrityViolationException e) {
+			throw new com.thiago.bookstore.services.exceptions
+			.DataIntegrityViolationException("A Categoria não pode ser deletada, possui livros associados!");
+		}
 	}
 }

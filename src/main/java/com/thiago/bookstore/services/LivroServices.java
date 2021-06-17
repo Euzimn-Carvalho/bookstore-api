@@ -48,4 +48,9 @@ public class LivroServices {
 		livro.setCategoria(categoria);
 		return repository.save(livro);
 	}
+	
+	public void delete(Integer id) {
+		getById(id);
+		repository.deleteById(id);
+	}
 }

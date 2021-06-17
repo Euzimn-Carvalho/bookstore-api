@@ -4,6 +4,8 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,14 +43,14 @@ public class CategoriaResources {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Categoria> create(@RequestBody Categoria categoria){
+	public ResponseEntity<Categoria> create(@Valid @RequestBody Categoria categoria){
 		categoria = categoriaService.create(categoria);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(categoria.getId()).toUri();
 		return ResponseEntity.created(uri).body(categoria);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @RequestBody CategoriaDTO categoriaDTO){
+	public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @Valid @RequestBody CategoriaDTO categoriaDTO){
 		Categoria categoria = categoriaService.update(id, categoriaDTO);
 		return ResponseEntity.ok().body(new CategoriaDTO(categoria));
 	}
